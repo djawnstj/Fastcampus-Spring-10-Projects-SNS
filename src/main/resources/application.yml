@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      dialect: org.hibernate.dialect.MairaDBDialect
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:mariadb://localhost:3306/sns
+    username: root
+    password: 159357
+    driver-class-name: org.mariadb.jdbc.Driver
+
+jwt:
+  secret-key: fast_campus.sns-application-2022.secret_key
+  token:
+#    30 days
+    expired-time-ms: 2592000000
