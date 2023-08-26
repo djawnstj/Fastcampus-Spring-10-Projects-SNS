@@ -44,9 +44,8 @@ public class UserControllerTest {
         when(userService.join(userName, password)).thenReturn(mock(User.class));
 
         //then
-        mockMvc.perform(post("/api/vq/users/join")
+        mockMvc.perform(post("/api/v1/users/join")
                         .contentType(MediaType.APPLICATION_JSON)
-                        // TODO : add request body
                         .content(objectMapper.writeValueAsBytes(new UserJoinRequest(userName, password))))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -62,7 +61,7 @@ public class UserControllerTest {
         when(userService.join(userName, password)).thenThrow(new SnsApplicationException(ErrorCode.DUPLICATED_USER_NAME));
 
         //then
-        mockMvc.perform(post("/api/vq/users/join")
+        mockMvc.perform(post("/api/v1/users/join")
                         .contentType(MediaType.APPLICATION_JSON)
                         // TODO : add request body
                         .content(objectMapper.writeValueAsBytes(new UserJoinRequest(userName, password))))
@@ -80,7 +79,7 @@ public class UserControllerTest {
         when(userService.login(userName, password)).thenReturn("test_token");
 
         //then
-        mockMvc.perform(post("/api/vq/users/login")
+        mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         // TODO : add request body
                         .content(objectMapper.writeValueAsBytes(new UserLoginRequest(userName, password))))
@@ -98,7 +97,7 @@ public class UserControllerTest {
         when(userService.login(userName, password)).thenThrow(new SnsApplicationException(ErrorCode.USER_NOT_FOUND));
 
         //then
-        mockMvc.perform(post("/api/vq/users/login")
+        mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         // TODO : add request body
                         .content(objectMapper.writeValueAsBytes(new UserLoginRequest(userName, password))))
@@ -116,7 +115,7 @@ public class UserControllerTest {
         when(userService.login(userName, password)).thenThrow(new SnsApplicationException(ErrorCode.INVALID_PASSWORD));
 
         //then
-        mockMvc.perform(post("/api/vq/users/login")
+        mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         // TODO : add request body
                         .content(objectMapper.writeValueAsBytes(new UserLoginRequest(userName, password))))
